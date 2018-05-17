@@ -49,6 +49,7 @@ from pyzbar.pyzbar import decode
 from PIL import Image
 decode(Image.open('pyzbar/tests/code128.png'))
 ```
+Output:
 ```
 [
     Decoded(
@@ -78,7 +79,7 @@ import cv2
 decode(cv2.imread('pyzbar/tests/code128.png'))
 ```
 Output:
-```Python
+``` 
 [
     Decoded(
         data=b'Foramenifera', type='CODE128',
@@ -110,7 +111,7 @@ height, width = image.shape[:2]
 decode((image[:, :, 0].astype('uint8').tobytes(), width, height))
 ```
 Output:
-```Python
+``` 
 [
     Decoded(
         data=b'Foramenifera', type='CODE128',
@@ -137,7 +138,7 @@ grey = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 decode((grey.tobytes(), width, height))
 ```
 Output:
-```Python
+``` 
 [
     Decoded(
         data=b'Foramenifera', type='CODE128',
@@ -164,7 +165,7 @@ Output:
 decode((image.tobytes(), width, height))
 ```
 Output:
-```Python
+``` 
 
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -182,7 +183,7 @@ from pyzbar.pyzbar import ZBarSymbol
 decode(Image.open('pyzbar/tests/qrcode.png'), symbols=[ZBarSymbol.QRCODE])
 ```
 Output:
-```Python
+``` 
 [
     Decoded(
         data=b'Thalassiodracon', type='QRCODE',
