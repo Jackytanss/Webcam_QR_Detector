@@ -37,12 +37,19 @@ pip install pyzbar[scripts]
 
 ## Example usage
 
+Go to see the Jupyter Notebook for more details.
+
+- [QR_Detector_Basic]()
+- [QR_Detector_Webcam]()
+
 The `decode` function accepts instances of `PIL.Image`.
 
 ```Python
 from pyzbar.pyzbar import decode
 from PIL import Image
 decode(Image.open('pyzbar/tests/code128.png'))
+```
+```
 [
     Decoded(
         data=b'Foramenifera', type='CODE128',
@@ -69,6 +76,9 @@ images using [OpenCV](http://opencv.org/).
 ```python
 import cv2
 decode(cv2.imread('pyzbar/tests/code128.png'))
+```
+Output:
+```Python
 [
     Decoded(
         data=b'Foramenifera', type='CODE128',
@@ -98,6 +108,9 @@ height, width = image.shape[:2]
 
 # 8 bpp by considering just the blue channel
 decode((image[:, :, 0].astype('uint8').tobytes(), width, height))
+```
+Output:
+```Python
 [
     Decoded(
         data=b'Foramenifera', type='CODE128',
@@ -116,10 +129,15 @@ decode((image[:, :, 0].astype('uint8').tobytes(), width, height))
         ]
     )
 ]
+```
 
+```Python
 # 8 bpp by converting image to greyscale
 grey = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 decode((grey.tobytes(), width, height))
+```
+Output:
+```Python
 [
     Decoded(
         data=b'Foramenifera', type='CODE128',
@@ -138,9 +156,15 @@ decode((grey.tobytes(), width, height))
         ]
     )
 ]
+```
+
+```Python
 
 # If you don't provide 8 bpp
 decode((image.tobytes(), width, height))
+```
+Output:
+```Python
 
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -156,6 +180,9 @@ symbol types
 from pyzbar.pyzbar import ZBarSymbol
 # Look for just qrcode
 decode(Image.open('pyzbar/tests/qrcode.png'), symbols=[ZBarSymbol.QRCODE])
+```
+Output:
+```Python
 [
     Decoded(
         data=b'Thalassiodracon', type='QRCODE',
@@ -166,7 +193,8 @@ decode(Image.open('pyzbar/tests/qrcode.png'), symbols=[ZBarSymbol.QRCODE])
         ]
     )
 ]
-
+```
+```Python
 
 # If we look for just code128, the qrcodes in the image will not be detected
 decode(Image.open('pyzbar/tests/qrcode.png'), symbols=[ZBarSymbol.CODE128])
