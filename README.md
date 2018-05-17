@@ -7,24 +7,13 @@ This project is forked from [zbar](https://github.com/NaturalHistoryMuseum/pyzba
 [![Travis status](https://travis-ci.org/NaturalHistoryMuseum/pyzbar.svg?branch=master)](https://travis-ci.org/NaturalHistoryMuseum/pyzbar)
 [![Coverage Status](https://coveralls.io/repos/github/NaturalHistoryMuseum/pyzbar/badge.svg?branch=master)](https://coveralls.io/github/NaturalHistoryMuseum/pyzbar?branch=master)
 
-Read one-dimensional barcodes and QR codes from Python 2 and 3 using the
-[zbar](http://zbar.sourceforge.net/) library.
-
 * Pure python
 * Works with PIL / Pillow images, OpenCV / numpy `ndarray`s, and raw bytes
 * Decodes locations of barcodes
 * No dependencies, other than the zbar library itself
 * Tested on Python 2.7, and Python 3.4 to 3.6
 
-The older [zbar](https://sourceforge.net/p/zbar/code/ci/default/tree/python/)
-package is stuck in Python 2.x-land.
-The [zbarlight](https://github.com/Polyconseil/zbarlight/) package doesn't
-provide support for Windows and depends upon Pillow.
-
 ## Installation
-
-The `zbar` `DLL`s are included with the Windows Python wheels.
-On other operating systems, you will need to install the `zbar` shared library.
 
 Mac OS X:
 
@@ -50,10 +39,10 @@ pip install pyzbar[scripts]
 
 The `decode` function accepts instances of `PIL.Image`.
 
-```
->>> from pyzbar.pyzbar import decode
->>> from PIL import Image
->>> decode(Image.open('pyzbar/tests/code128.png'))
+```Python
+from pyzbar.pyzbar import decode
+from PIL import Image
+decode(Image.open('pyzbar/tests/code128.png'))
 [
     Decoded(
         data=b'Foramenifera', type='CODE128',
@@ -77,9 +66,9 @@ The `decode` function accepts instances of `PIL.Image`.
 It also accepts instances of `numpy.ndarray`, which might come from loading
 images using [OpenCV](http://opencv.org/).
 
-```
->>> import cv2
->>> decode(cv2.imread('pyzbar/tests/code128.png'))
+```python
+import cv2
+decode(cv2.imread('pyzbar/tests/code128.png'))
 [
     Decoded(
         data=b'Foramenifera', type='CODE128',
@@ -102,13 +91,13 @@ images using [OpenCV](http://opencv.org/).
 
 You can also provide a tuple `(pixels, width, height)`, where the image data
 is eight bits-per-pixel.
+ 
+```python
+image = cv2.imread('pyzbar/tests/code128.png')
+height, width = image.shape[:2]
 
-```
->>> image = cv2.imread('pyzbar/tests/code128.png')
->>> height, width = image.shape[:2]
-
->>> # 8 bpp by considering just the blue channel
->>> decode((image[:, :, 0].astype('uint8').tobytes(), width, height))
+# 8 bpp by considering just the blue channel
+decode((image[:, :, 0].astype('uint8').tobytes(), width, height))
 [
     Decoded(
         data=b'Foramenifera', type='CODE128',
@@ -128,9 +117,9 @@ is eight bits-per-pixel.
     )
 ]
 
->>> # 8 bpp by converting image to greyscale
->>> grey = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
->>> decode((grey.tobytes(), width, height))
+# 8 bpp by converting image to greyscale
+grey = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+decode((grey.tobytes(), width, height))
 [
     Decoded(
         data=b'Foramenifera', type='CODE128',
@@ -150,8 +139,9 @@ is eight bits-per-pixel.
     )
 ]
 
->>> # If you don't provide 8 bpp
->>> decode((image.tobytes(), width, height))
+# If you don't provide 8 bpp
+decode((image.tobytes(), width, height))
+
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
   File "/Users/lawh/projects/pyzbar/pyzbar/pyzbar.py", line 102, in decode
@@ -162,10 +152,10 @@ pyzbar.pyzbar_error.PyZbarError: Unsupported bits-per-pixel [24]
 The default behaviour is to decode all symbol types. You can look for just your
 symbol types
 
-```
->>> from pyzbar.pyzbar import ZBarSymbol
->>> # Look for just qrcode
->>> decode(Image.open('pyzbar/tests/qrcode.png'), symbols=[ZBarSymbol.QRCODE])
+```python
+from pyzbar.pyzbar import ZBarSymbol
+# Look for just qrcode
+decode(Image.open('pyzbar/tests/qrcode.png'), symbols=[ZBarSymbol.QRCODE])
 [
     Decoded(
         data=b'Thalassiodracon', type='QRCODE',
@@ -178,8 +168,8 @@ symbol types
 ]
 
 
->>> # If we look for just code128, the qrcodes in the image will not be detected
->>> decode(Image.open('pyzbar/tests/qrcode.png'), symbols=[ZBarSymbol.CODE128])
+# If we look for just code128, the qrcodes in the image will not be detected
+decode(Image.open('pyzbar/tests/qrcode.png'), symbols=[ZBarSymbol.CODE128])
 []
 ```
 
@@ -190,17 +180,6 @@ The blue and pink boxes show `rect` and `polygon`, respectively, for barcodes in
 (see [bounding_box_and_polygon.py](https://github.com/NaturalHistoryMuseum/pyzbar/blob/master/bounding_box_and_polygon.py)).
 
 ![Two barcodes with bounding boxes and polygons](https://github.com/NaturalHistoryMuseum/pyzbar/raw/master/bounding_box_and_polygon.png)
-
-## Windows error message
-If you see an ugly `ImportError` when importing `pyzbar` on Windows you will
-most likely need the
-[Visual C++ Redistributable Packages for Visual Studio 2013](https://www.microsoft.com/en-US/download/details.aspx?id=40784).
-Install `vcredist_x64.exe` if using 64-bit Python, `vcredist_x86.exe` if using
-32-bit Python.
-
-## Contributors
-
-* Alex (@globophobe) - first implementation of barcode locations
 
 ## License
 
