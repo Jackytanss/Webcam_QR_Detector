@@ -45,7 +45,7 @@ def display(im, decodedObjects):
 if __name__ == '__main__':
  
   # Read image
-  im = cv2.imread('pyzbar/tests/qrcode_rotated.png')
- 
+  #im = cv2.imread('pyzbar/tests/qrcode_rotated.png')
+  im = cv2.imread('pyzbar/tests/code128.png')
   decodedObjects = decode(im)
   display(im, decodedObjects)
