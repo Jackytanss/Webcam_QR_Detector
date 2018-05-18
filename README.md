@@ -39,8 +39,8 @@ pip install pyzbar[scripts]
 
 Go to see the Jupyter Notebook for more details.
 
-- [QR_Detector_Basic]()
-- [QR_Detector_Webcam]()
+- [QR_Bar_Code_Detector_Basic]()
+- [QR_Bar_Code_Detector_Webcam]()
 
 The `decode` function accepts instances of `PIL.Image`.
 
