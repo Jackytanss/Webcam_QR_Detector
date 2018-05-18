@@ -10,24 +10,8 @@ import numpy as np
 import cv2
 import time
 
-
-def decode(im) : 
-  # Find barcodes and QR codes
-  decodedObjects = pyzbar.decode(im)
- 
-  # Print results
-  #for obj in decodedObjects:
-  #  print('Type : ', obj.type)
-  #  print('Data : ', obj.data,'\n')
-     
-  return decodedObjects
-
-title = "Bar Detection Demo"
-
-
-#cv2.NamedWindow(title, 1)
-
-cap = cv2.VideoCapture(1)
+# get the webcam:  
+cap = cv2.VideoCapture(0)
 
 cap.set(3,640)
 cap.set(4,480)
@@ -39,6 +23,16 @@ cap.set(4,480)
 #1024.0 x 768.0
 #1280.0 x 1024.0
 time.sleep(2)
+
+def decode(im) : 
+    # Find barcodes and QR codes
+    decodedObjects = pyzbar.decode(im)
+    # Print results
+    for obj in decodedObjects:
+        print('Type : ', obj.type)
+        print('Data : ', obj.data,'\n')     
+    return decodedObjects
+
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -79,8 +73,11 @@ while(cap.isOpened()):
                
     # Display the resulting frame
     cv2.imshow('frame',frame)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    key = cv2.waitKey(1)
+    if key & 0xFF == ord('q'):
         break
+    elif key & 0xFF == ord('s'): # wait for 's' key to save 
+        cv2.imwrite('Capture.png', frame)     
 
 # When everything done, release the capture
 cap.release()
