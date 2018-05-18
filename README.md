@@ -33,8 +33,8 @@ pip install pyzbar[scripts]
 ## Jupyter Notebook:
 Go to see the Jupyter Notebook for more details.
 
-1. [QR_Bar_Code_Detector_Basic](https://github.com/cuicaihao/pyzbar/blob/master/QR_Bar_Code_Detector_Basic.ipynb)
-2. [QR_Bar_Code_Detector_Webcam](https://github.com/cuicaihao/pyzbar/blob/master/QR_Bar_Code_Detector_Webcam.ipynb)
+1. [QR_Bar_Code_Detector_Basic](https://github.com/cuicaihao/Webcam_QR_Detector/blob/master/Lab_01_QR_Bar_Code_Detector_Basic.ipynb)
+2. [QR_Bar_Code_Detector_Webcam](https://github.com/cuicaihao/Webcam_QR_Detector/blob/master/Lab_02_QR_Bar_Code_Detector_Webcam.ipynb)
 
 
 ### License
