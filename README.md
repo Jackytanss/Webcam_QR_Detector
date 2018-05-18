@@ -2,7 +2,7 @@
 
 ![Life is short, use Python](https://github.com/cuicaihao/pyzbar/blob/master/Bar_Images/code128_1.png)
 
-This project is forked from [zbar](https://github.com/NaturalHistoryMuseum/pyzbar) library, I added few modification, so webcam can be used as an image reader to detect QR and Bar codes.
+This project is forked from [zbar](https://github.com/NaturalHistoryMuseum/pyzbar) library, I added few modifications, so webcam can be used as an image reader to detect QR and Bar codes.
 
 * Pure python
 * Works with PIL / Pillow images, OpenCV / numpy `ndarray`s, and raw bytes
