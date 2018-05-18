@@ -30,14 +30,14 @@ pip install pyzbar
 pip install pyzbar[scripts]
 ```
 
-# Jupyter Notebook:
+## Jupyter Notebook:
 Go to see the Jupyter Notebook for more details.
 
 1. [QR_Bar_Code_Detector_Basic](https://github.com/cuicaihao/pyzbar/blob/master/QR_Bar_Code_Detector_Basic.ipynb)
 2. [QR_Bar_Code_Detector_Webcam](https://github.com/cuicaihao/pyzbar/blob/master/QR_Bar_Code_Detector_Webcam.ipynb)
 
-## License
 
+### License
 `pyzbar` is distributed under the MIT license (see `LICENCE.txt`).
 The `zbar` shared library is distributed under the GNU Lesser General Public
 License, version 2.1 (see `zbar-LICENCE.txt`).
