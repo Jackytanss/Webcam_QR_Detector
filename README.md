@@ -13,8 +13,14 @@ This project is forked from [zbar](https://github.com/NaturalHistoryMuseum/pyzba
 Here is a quick look of the final output:
 
 ![webcam QR detection](Capture.png)    
+
 ## Installation
 Mac OS X:
+Install [Homebrew](https://brew.sh/):
+```bash
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+Install `zbar` lib:
 ```bash
 brew install zbar
 ```
